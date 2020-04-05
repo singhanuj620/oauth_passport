@@ -11,7 +11,11 @@ router.get("/google",passport.authenticate('google',{
 }));
 
 router.get("/logout", (req,res) => {
-	res.send("Soon logging out");
+	res.send("Soon logging out you soon");
+});
+
+router.get("/google/redirect",passport.authenticate('google'), (req,res) => {
+	res.send("reached callback");
 });
 
 module.exports = router;
