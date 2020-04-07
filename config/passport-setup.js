@@ -13,12 +13,18 @@ passport.use(
 		callbackURL:"/auth/google/redirect"
 	}, (accessToken, refreshToken, profile, done) => {
 		//callback function
-		console.log(profile);
-		new User({
-			username: profile.displayName,
-			googleid: profile.id
-		}).save().then((newUser) => {
-			console.log(newUser);
+		User.findOne({googleid: profile.id}).then((currentUser) => {
+			if(currentUser){
+				console.log('user is : ',currentUser);
+			}
+			else{
+				new User({
+					username: profile.displayName,
+					googleid: profile.id
+				}).save().then((newUser) => {
+						console.log('newUser created : ',newUser);
+					});
+			}
 		});
 	})
 )
