@@ -15,11 +15,17 @@
 <div class="container">
 		<div class="row">
 			<div class="col-lg-4 col-md-4 element_centre">
-				<a href="/auth/logout"><button class="btn btn-md btn-warning">Logout</button></a>
+				<% if (user) { %>
+					<a href="/auth/logout"><button class="btn btn-md btn-warning">Logout</button></a>
+				<% } %>
 			</div>
 
 			<div class="col-lg-4 col-md-4 element_centre">
-				<a href="/auth/login"><button class="btn btn-md btn-primary">Login</button></a>
+				<% if (!user) { %>
+					<a href="/auth/login"><button class="btn btn-md btn-primary">Login</button></a>
+				<% } else { %>
+					<a href="/profile"><button class="btn btn-md btn-primary">Profile</button></a>
+					<% } %>
 			</div>
 
 			<div class="col-lg-4 col-md-4 element_centre">
@@ -33,6 +39,12 @@
 	<div class="row">
 		<div class="col-md-12 element_centre heading">
 			<h1>Username is : <%=user.username %></h1>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12 element_centre heading">
+			<img src="<%= user.thumbnail%>" alt="">
 		</div>
 	</div>
 </div>

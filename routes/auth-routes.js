@@ -3,7 +3,7 @@ const passport	=	require("passport");
 
 
 router.get("/login", (req,res) => {
-	res.render("login")
+	res.render("login",{user:req.user})
 });
 
 router.get("/google",passport.authenticate('google',{
